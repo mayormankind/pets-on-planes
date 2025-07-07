@@ -167,161 +167,180 @@ export default function PetsOnPlanesLanding() {
               <p className="text-xl text-gray-600 leading-relaxed">
                 Relocate, go on holiday, or travel stress-free with your pet.
               </p>
+
+              {/* Enhanced Pet Travel Search Form */}
+              <div className="bg-white/20 backdrop-blur-md rounded-2xl p-6 border border-white/30 shadow-2xl animate-in fade-in-50 slide-in-from-bottom duration-1000 delay-300">
+                <h3 className="text-xl font-semibold text-gray-900 mb-6">
+                  Find Your Perfect Pet Travel Solution
+                </h3>
+
+                <form className="space-y-4">
+                  {/* Standard Travel Fields */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-gray-700">
+                        From
+                      </label>
+                      <div className="relative">
+                        <MapPin className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                        <Input
+                          placeholder="Departure city"
+                          className="pl-10 bg-white/80 backdrop-blur-sm border-white/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 hover:bg-white/90"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-gray-700">
+                        To
+                      </label>
+                      <div className="relative">
+                        <MapPin className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                        <Input
+                          placeholder="Destination city"
+                          className="pl-10 bg-white/80 backdrop-blur-sm border-white/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 hover:bg-white/90"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-gray-700">
+                        Date
+                      </label>
+                      <div className="relative">
+                        <Calendar className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                        <Input
+                          type="date"
+                          className="pl-10 bg-white/80 backdrop-blur-sm border-white/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 hover:bg-white/90"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-gray-700">
+                        Trip Type
+                      </label>
+                      <Select>
+                        <SelectTrigger className="bg-white/80 backdrop-blur-sm border-white/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 hover:bg-white/90">
+                          <SelectValue placeholder="Select trip type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="one-way">One Way</SelectItem>
+                          <SelectItem value="return">Return</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+
+                  {/* Pet Travel Checkbox */}
+                  <div className="flex items-center space-x-2 py-2">
+                    <Checkbox
+                      id="fly-with-pet"
+                      checked={flyWithPet}
+                      onCheckedChange={(checked) =>
+                        setFlyWithPet(checked === true)
+                      }
+                      className="border-2 border-blue-400 data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600"
+                    />
+                    <label
+                      htmlFor="fly-with-pet"
+                      className="text-sm font-medium text-gray-700 cursor-pointer"
+                    >
+                      Fly with my pet
+                    </label>
+                  </div>
+
+                  {/* Pet-Specific Fields with Animation */}
+                  {flyWithPet && (
+                    <div className="space-y-4 animate-in fade-in-50 slide-in-from-top duration-500 border-t border-white/30 pt-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <label className="text-sm font-medium text-gray-700">
+                            Pet Type
+                          </label>
+                          <Select>
+                            <SelectTrigger className="bg-white/80 backdrop-blur-sm border-white/50 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 hover:bg-white/90">
+                              <SelectValue placeholder="Select pet type" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="cat">Cat</SelectItem>
+                              <SelectItem value="dog">Dog</SelectItem>
+                              <SelectItem value="other">Other</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-sm font-medium text-gray-700">
+                            Pet Weight
+                          </label>
+                          <Select>
+                            <SelectTrigger className="bg-white/80 backdrop-blur-sm border-white/50 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 hover:bg-white/90">
+                              <SelectValue placeholder="Select weight range" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="under-6kg">
+                                {"< 6kg"}
+                              </SelectItem>
+                              <SelectItem value="6-10kg">6-10kg</SelectItem>
+                              <SelectItem value="over-10kg">
+                                {"> 10kg"}
+                              </SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <label className="text-sm font-medium text-gray-700">
+                            Pet Breed
+                          </label>
+                          <Input
+                            placeholder="Enter pet breed"
+                            className="bg-white/80 backdrop-blur-sm border-white/50 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 hover:bg-white/90"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-sm font-medium text-gray-700">
+                            Pet Age
+                          </label>
+                          <Input
+                            type="number"
+                            placeholder="Age in years"
+                            className="bg-white/80 backdrop-blur-sm border-white/50 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 hover:bg-white/90"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Search Button */}
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-lg py-4 shadow-lg hover:shadow-orange-500/25 hover:shadow-xl transition-all duration-300 hover:scale-105 group"
+                  >
+                    <Search className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
+                    Search Pet Travel Options
+                  </Button>
+                </form>
+              </div>
             </div>
 
-            {/* Enhanced Pet Travel Search Form */}
-            <div className="bg-white/20 backdrop-blur-md rounded-2xl p-6 border border-white/30 shadow-2xl animate-in fade-in-50 slide-in-from-bottom duration-1000 delay-300">
-              <h3 className="text-xl font-semibold text-gray-900 mb-6">
-                Find Your Perfect Pet Travel Solution
-              </h3>
-
-              <form className="space-y-4">
-                {/* Standard Travel Fields */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700">
-                      From
-                    </label>
-                    <div className="relative">
-                      <MapPin className="absolute left-3 top-3 h-4 w-4 text-blue-400" />
-                      <Input
-                        placeholder="Departure city"
-                        className="pl-10 bg-white/80 backdrop-blur-sm border-white/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 hover:bg-white/90"
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700">
-                      To
-                    </label>
-                    <div className="relative">
-                      <MapPin className="absolute left-3 top-3 h-4 w-4 text-blue-400" />
-                      <Input
-                        placeholder="Destination city"
-                        className="pl-10 bg-white/80 backdrop-blur-sm border-white/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 hover:bg-white/90"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700">
-                      Date
-                    </label>
-                    <div className="relative">
-                      <Calendar className="absolute left-3 top-3 h-4 w-4 text-blue-400" />
-                      <Input
-                        type="date"
-                        className="pl-10 bg-white/80 backdrop-blur-sm border-white/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 hover:bg-white/90"
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700">
-                      Trip Type
-                    </label>
-                    <Select>
-                      <SelectTrigger className="bg-white/80 backdrop-blur-sm border-white/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 hover:bg-white/90">
-                        <SelectValue placeholder="Select trip type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="one-way">One Way</SelectItem>
-                        <SelectItem value="return">Return</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-
-                {/* Pet Travel Checkbox */}
-                <div className="flex items-center space-x-2 py-2">
-                  <Checkbox
-                    id="fly-with-pet"
-                    checked={flyWithPet}
-                    onCheckedChange={(checked) =>
-                      setFlyWithPet(checked === true)
-                    }
-                    className="border-2 border-blue-400 data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600"
-                  />
-                  <label
-                    htmlFor="fly-with-pet"
-                    className="text-sm font-medium text-gray-700 cursor-pointer"
-                  >
-                    Fly with my pet
-                  </label>
-                </div>
-
-                {/* Pet-Specific Fields with Animation */}
-                {flyWithPet && (
-                  <div className="space-y-4 animate-in fade-in-50 slide-in-from-top duration-500 border-t border-white/30 pt-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-700">
-                          Pet Type
-                        </label>
-                        <Select>
-                          <SelectTrigger className="bg-white/80 backdrop-blur-sm border-white/50 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 hover:bg-white/90">
-                            <SelectValue placeholder="Select pet type" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="cat">Cat</SelectItem>
-                            <SelectItem value="dog">Dog</SelectItem>
-                            <SelectItem value="other">Other</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-700">
-                          Pet Weight
-                        </label>
-                        <Select>
-                          <SelectTrigger className="bg-white/80 backdrop-blur-sm border-white/50 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 hover:bg-white/90">
-                            <SelectValue placeholder="Select weight range" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="under-6kg">{"< 6kg"}</SelectItem>
-                            <SelectItem value="6-10kg">6-10kg</SelectItem>
-                            <SelectItem value="over-10kg">
-                              {"> 10kg"}
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-700">
-                          Pet Breed
-                        </label>
-                        <Input
-                          placeholder="Enter pet breed"
-                          className="bg-white/80 backdrop-blur-sm border-white/50 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 hover:bg-white/90"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-700">
-                          Pet Age
-                        </label>
-                        <Input
-                          type="number"
-                          placeholder="Age in years"
-                          className="bg-white/80 backdrop-blur-sm border-white/50 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 hover:bg-white/90"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Search Button */}
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-lg py-4 shadow-lg hover:shadow-orange-500/25 hover:shadow-xl transition-all duration-300 hover:scale-105 group"
-                >
-                  <Search className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
-                  Search Pet Travel Options
-                </Button>
-              </form>
+            <div className="relative animate-in fade-in-50 slide-in-from-right duration-1000 h-full delay-500">
+              <div className="relative">
+                <Image
+                  src="/pet-on-plane.jpg"
+                  alt="Pet traveling with airplane"
+                  width={1000}
+                  height={1000}
+                  className="rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105"
+                />
+                <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-br from-orange-400 to-orange-500 rounded-full animate-bounce opacity-80" />
+                <div
+                  className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-br from-blue-400 to-blue-500 rounded-full animate-bounce opacity-80"
+                  style={{ animationDelay: "0.5s" }}
+                />
+              </div>
             </div>
           </div>
         </div>
