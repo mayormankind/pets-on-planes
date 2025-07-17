@@ -40,10 +40,45 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "sonner";
 
 export default function PetsOnPlanesLanding() {
   const [flyWithPet, setFlyWithPet] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    const data = Object.fromEntries(formData);
+    console.log("Form data sent:", data); // Log sent data
+
+    try {
+      const response = await fetch("/api/search", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const result = await response.json(); // Parse response
+      console.log("API response:", result); // Log response
+      if (response.ok) {
+        toast.success("Success", {
+          description:
+            "Your details have been submitted to our partner agency!",
+        });
+      } else {
+        throw new Error("Search failed");
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error("Fetch error:", error.message); // Log fetch errors
+      } else {
+        console.error("Fetch error:", error); // Fallback for non-Error types
+      }
+      toast.error("Error", {
+        description: "Failed to submit details. Please try again.",
+      });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white font-sans">
@@ -175,7 +210,7 @@ export default function PetsOnPlanesLanding() {
                 Find Your Perfect Pet Travel Solution
               </h3>
 
-              <form className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Standard Travel Fields */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
@@ -186,6 +221,7 @@ export default function PetsOnPlanesLanding() {
                       <MapPin className="absolute left-3 top-3 h-4 w-4 text-blue-400" />
                       <Input
                         placeholder="Departure city"
+                        name="from"
                         className="pl-10 bg-white/80 backdrop-blur-sm border-white/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 hover:bg-white/90"
                       />
                     </div>
@@ -198,6 +234,7 @@ export default function PetsOnPlanesLanding() {
                       <MapPin className="absolute left-3 top-3 h-4 w-4 text-blue-400" />
                       <Input
                         placeholder="Destination city"
+                        name="to"
                         className="pl-10 bg-white/80 backdrop-blur-sm border-white/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 hover:bg-white/90"
                       />
                     </div>
@@ -212,8 +249,10 @@ export default function PetsOnPlanesLanding() {
                     <div className="relative">
                       <Calendar className="absolute left-3 top-3 h-4 w-4 text-blue-400" />
                       <Input
+                        name="date"
                         type="date"
                         className="pl-10 bg-white/80 backdrop-blur-sm border-white/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 hover:bg-white/90"
+                        aria-label="Travel date"
                       />
                     </div>
                   </div>
@@ -221,7 +260,7 @@ export default function PetsOnPlanesLanding() {
                     <label className="text-sm font-medium text-gray-700">
                       Trip Type
                     </label>
-                    <Select>
+                    <Select name="tripType">
                       <SelectTrigger className="bg-white/80 backdrop-blur-sm border-white/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 hover:bg-white/90">
                         <SelectValue placeholder="Select trip type" />
                       </SelectTrigger>
@@ -331,7 +370,7 @@ export default function PetsOnPlanesLanding() {
       <section className="py-16 bg-white relative overflow-hidden">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="grid md:grid-cols-4 gap-8">
-            <div className="flex rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 animate-in fade-in-50 slide-in-from-bottom duration-1000">
+            {/* <div className="flex rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 animate-in fade-in-50 slide-in-from-bottom duration-1000">
               <Image
                 src="/Lastminute.webp"
                 alt="Last minute pet travel"
@@ -339,9 +378,16 @@ export default function PetsOnPlanesLanding() {
                 height={200}
                 className="w-full h-full object-cover"
               />
-            </div>
+            </div> */}
 
             {[
+              {
+                icon: Clock,
+                title: "Last-Minute Pet Travel?",
+                description:
+                  "We handle urgent pet relocations with our express service network.",
+                delay: "delay-200",
+              },
               {
                 icon: Clock,
                 title: "Last-Minute Pet Travel?",
@@ -466,10 +512,10 @@ export default function PetsOnPlanesLanding() {
               <Input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 bg-white/90 backdrop-blur-sm border-white/50 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 hover:bg-white"
+                className="flex-1 bg-white/90 h-12 backdrop-blur-sm border-white/50 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 hover:bg-white"
               />
               <Select>
-                <SelectTrigger className="md:w-48 bg-white/90 backdrop-blur-sm border-white/50 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 hover:bg-white">
+                <SelectTrigger className="w-full bg-white/90 backdrop-blur-sm border-white/50 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 hover:bg-white">
                   <SelectValue placeholder="Destination" />
                 </SelectTrigger>
                 <SelectContent>
