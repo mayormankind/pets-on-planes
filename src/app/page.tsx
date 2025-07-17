@@ -515,7 +515,7 @@ export default function PetsOnPlanesLanding() {
                 className="flex-1 bg-white/90 h-12 backdrop-blur-sm border-white/50 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 hover:bg-white"
               />
               <Select>
-                <SelectTrigger className="w-full md:w-fit bg-white/90 backdrop-blur-sm border-white/50 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 hover:bg-white">
+                <SelectTrigger className="bg-white/90 backdrop-blur-sm border-white/50 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 hover:bg-white">
                   <SelectValue placeholder="Destination" />
                 </SelectTrigger>
                 <SelectContent>
@@ -667,7 +667,7 @@ export default function PetsOnPlanesLanding() {
       </section>
 
       {/* Enhanced Video Promo Placeholder */}
-      {/* <section className="py-16 bg-white">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="max-w-4xl mx-auto text-center animate-in fade-in-50 slide-in-from-bottom duration-1000">
             <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl p-12 border-2 border-dashed border-gray-300 hover:border-blue-400 transition-all duration-500 hover:shadow-xl group">
@@ -681,7 +681,7 @@ export default function PetsOnPlanesLanding() {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* Enhanced Blog Previews */}
       <section className="py-16 bg-gradient-to-br from-gray-50 to-gray-100">
