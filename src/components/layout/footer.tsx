@@ -73,27 +73,6 @@ export default function Footer() {
                 ))}
               </div>
             </div>
-
-            {/* Contact Info */}
-            {/* <div className="space-y-3">
-              <div className="flex items-center space-x-3 text-black">
-                <Phone className="h-5 w-5 text-[#F2C400]" />
-                <Link href="tel:+2349112621533" className="hover:text-white transition-colors">
-                  +234 911 262 1533
-                </Link>
-              </div>
-              <div className="flex items-center space-x-3 text-black">
-                <Mail className="h-5 w-5 text-[#F2C400]" />
-                <Link href="mailto:info@citygatesfoodbank.com" className="hover:text-white transition-colors">
-                  info@citygatesfoodbank.com
-                </Link>
-              </div>
-              <div className="flex items-start space-x-3 text-black">
-                <MapPin className="h-5 w-5 text-[#F2C400] mt-1 flex-shrink-0" />
-                <p className="hover:text-white transition-colors">
-                  Suite C06, Afro Mall, Opposite International Building Materials Mkt Dei-Dei, FCT, Abuja</p>
-              </div>
-            </div> */}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
